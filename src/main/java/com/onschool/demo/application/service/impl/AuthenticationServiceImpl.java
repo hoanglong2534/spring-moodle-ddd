@@ -41,8 +41,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .build();
     }
 
-    @Override
-    public String refreshToken(String refreshToken) {
-        return "a";
-    }
 }

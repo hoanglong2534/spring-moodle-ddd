@@ -3,7 +3,7 @@ package com.onschool.demo.application.service.impl;
 import com.onschool.demo.application.dto.response.ModuleResponseDTO;
 import com.onschool.demo.application.service.CourseModuleService;
 import com.onschool.demo.infrastructure.persistance.entity.CourseModules;
-import com.onschool.demo.infrastructure.persistance.mapper.ModuleMapper;;
+import com.onschool.demo.infrastructure.persistance.mapper.ModuleMapper;
 import com.onschool.demo.infrastructure.persistance.repository.CourseModuleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
