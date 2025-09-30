@@ -1,11 +1,13 @@
 package com.onschool.demo.presentation.restcontroller;
 
 
-import com.onschool.demo.application.dto.request.QuizAttemptsRequestDTO;
 import com.onschool.demo.application.dto.response.QuizAttemptsResponseDTO;
 import com.onschool.demo.application.service.QuizAttemptsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
