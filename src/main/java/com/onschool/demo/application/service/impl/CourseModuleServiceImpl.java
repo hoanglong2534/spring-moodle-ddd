@@ -2,7 +2,10 @@ package com.onschool.demo.application.service.impl;
 
 import com.onschool.demo.application.dto.response.ModuleResponseDTO;
 import com.onschool.demo.application.service.CourseModuleService;
+import com.onschool.demo.domain.model.CourseModuleDomain;
+import com.onschool.demo.domain.repository.CourseModuleDomainRepository;
 import com.onschool.demo.infrastructure.persistance.entity.CourseModules;
+import com.onschool.demo.infrastructure.persistance.mapper.CourseModuleDomainMapper;
 import com.onschool.demo.infrastructure.persistance.mapper.ModuleMapper;
 import com.onschool.demo.infrastructure.persistance.repository.CourseModuleRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +19,21 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CourseModuleServiceImpl implements CourseModuleService {
 
-    private final CourseModuleRepository courseModuleRepository;
-    private final ModuleMapper moduleMapper;
+    private final CourseModuleDomainRepository courseModuleDomainRepository;
+    private final CourseModuleDomainMapper courseModuleDomainMapper;
 
     @Override
     public List<ModuleResponseDTO> getModuleDetailByCourseAndModule(Long courseId, Long moduleId) {
-        List<CourseModules> courseModulesList = courseModuleRepository
-                .findByCourseEntityIdAndModulesId(courseId, moduleId);
+        List<CourseModuleDomain> courseModuleDomainList = courseModuleDomainRepository
+                .getModulesByCourseAndModule(courseId, moduleId);
 
-        return courseModulesList.stream().map(moduleMapper::toModuleResponseDTO).collect(Collectors.toList());
+        List<ModuleResponseDTO> moduleResponseDTOList = new ArrayList<>();
+
+        for(CourseModuleDomain courseModuleDomain : courseModuleDomainList) {
+            ModuleResponseDTO moduleResponseDTO = courseModuleDomainMapper.toModuleDTO(courseModuleDomain);
+            moduleResponseDTOList.add(moduleResponseDTO);
+        }
+
+        return moduleResponseDTOList;
     }
 }
